@@ -8,7 +8,6 @@ import { log } from "./logger.js";
 
 chromium.use(stealth);
 
-
 // const { firefox } = require('playwright-extra')
 
 // // Add humanize plugin
@@ -35,7 +34,7 @@ chromium
       userAgent: userAgent.toString(),
     });
 
-    const timeoutMs = 2e3;
+    const timeoutMs = 20e3;
     context.setDefaultTimeout(timeoutMs);
 
     const page = await context.newPage();
