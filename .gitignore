@@ -129,9 +129,11 @@ dist
 .yarn/install-state.gz
 .pnp.*
 
+.DS_Store
 
 screenshots
 /playwright-report/
 /playwright/.cache/
 
 notes_private.md
+secret/
