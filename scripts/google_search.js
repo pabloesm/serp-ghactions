@@ -57,7 +57,7 @@ chromium
       }
       await googleSearch.clickOnLink(targetLink);
     } catch (error) {
-      console.log(error);
+      log.error(error);
     }
 
     log.info(`All done in ${scriptName} ✨`);

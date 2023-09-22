@@ -39,8 +39,11 @@ jobs:
       - name: Run
         run: node scripts/google_search.js
 
+      - name: Debug
+        run: ls -al
+
       - name: Upload artifacts
         uses: actions/upload-artifact@v3
         with:
           name: screenshots
-          path: ./*.png # or path/to/artifact
+          path: screenshots/*.png # or path/to/artifact
