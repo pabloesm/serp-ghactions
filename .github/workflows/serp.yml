@@ -23,6 +23,24 @@ jobs:
       - name: Install Playwright Browsers
         run: npx playwright install
 
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Install OpenVPN
+        run: |
+          sudo apt update
+          sudo apt install -y openvpn openvpn-systemd-resolved
+
+      - name: Connect to VPN
+        uses: "kota65535/github-openvpn-connect-action@v2"
+        with:
+          config_file: .github/workflows/Windscribe-Stockholm-Ikea.ovpn
+          username: ${{ secrets.OVPN_USERNAME }}
+          password: ${{ secrets.OVPN_PASSWORD }}
+          # client_key: ${{ secrets.OVPN_CLIENT_KEY }}
+          # tls_auth_key: ${{ secrets.OVPN_TLS_AUTH_KEY }}
+      # The openvpn process is automatically terminated in post-action phase
+
       - name: Run
         run: node scripts/google_search.js
 
