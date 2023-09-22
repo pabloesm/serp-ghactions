@@ -23,9 +23,6 @@ jobs:
       - name: Install Playwright Browsers
         run: npx playwright install
 
-      - name: Checkout
-        uses: actions/checkout@v3
-
       - name: Install OpenVPN
         run: |
           sudo apt update
@@ -37,8 +34,6 @@ jobs:
           config_file: .github/workflows/vpn/Windscribe-Stockholm-Ikea.ovpn
           username: ${{ secrets.OVPN_USERNAME }}
           password: ${{ secrets.OVPN_PASSWORD }}
-          # client_key: ${{ secrets.OVPN_CLIENT_KEY }}
-          # tls_auth_key: ${{ secrets.OVPN_TLS_AUTH_KEY }}
       # The openvpn process is automatically terminated in post-action phase
 
       - name: Run
