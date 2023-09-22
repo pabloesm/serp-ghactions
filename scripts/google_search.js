@@ -41,20 +41,24 @@ chromium
     const myPublicIP = await publicIpv4();
     log.info({ public_IP_address: myPublicIP });
 
-    const googleSearch = new GoogleSearch(context);
-    await googleSearch.loadUrl(url);
-    await googleSearch.search("chapati Salmorreta alicantina");
-    // await googleSearch.nextPage();
-    const links = await googleSearch.getResultLinks();
-    var targetLink = null;
-    for (const link of links) {
-      const text = await link.innerText();
-      console.log(`Link Text: ${text}`);
-      if (text.includes("Chapati - Más que recetas")) {
-        targetLink = link;
+    try {
+      const googleSearch = new GoogleSearch(context);
+      await googleSearch.loadUrl(url);
+      await googleSearch.search("chapati Salmorreta alicantina");
+      // await googleSearch.nextPage();
+      const links = await googleSearch.getResultLinks();
+      var targetLink = null;
+      for (const link of links) {
+        const text = await link.innerText();
+        console.log(`Link Text: ${text}`);
+        if (text.includes("Chapati - Más que recetas")) {
+          targetLink = link;
+        }
       }
+      await googleSearch.clickOnLink(targetLink);
+    } catch (error) {
+      console.log(error);
     }
-    await googleSearch.clickOnLink(targetLink);
 
     log.info(`All done in ${scriptName} ✨`);
     await browser.close();
