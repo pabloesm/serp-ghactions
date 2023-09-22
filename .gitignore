@@ -131,7 +131,7 @@ dist
 
 .DS_Store
 
-screenshots
+screenshots/*.png
 /playwright-report/
 /playwright/.cache/
 
