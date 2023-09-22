@@ -58,6 +58,7 @@ chromium
       await googleSearch.clickOnLink(targetLink);
     } catch (error) {
       log.error(error);
+      console.log(error);
     }
 
     log.info(`All done in ${scriptName} ✨`);
@@ -102,7 +103,12 @@ class GoogleSearch {
     } catch (error) {
       this.lang = "es";
       const buttonText = GoogleSearch.attrs.rejectCookiesButton[this.lang];
-      await this.page.getByRole("button", { name: buttonText }).click();
+      try {
+        await this.page.getByRole("button", { name: buttonText }).click();
+      } catch (error) {
+        this.lang = "en";
+        log.info("No cookies rejected");
+      }
     }
 
     await this.page.waitForTimeout(1000);
